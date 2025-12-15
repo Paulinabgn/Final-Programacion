@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <style>
+    
+        body {
+            height: 100%;
+            background-color: #ffd666;/*color de fondo del cuerpo */
+            margin: 0;/* Elimina margen exterior */
+        }
+
+        .contenedor {
+            display: flex;
+            height: 100%;
+        }
+
+        .left {
+            float: left;
+            width: 50%;
+            display: flex;
+            flex-direction: column; 
+        }
+
+        .encabezado-left {
+            align-items: center;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cuerpo-left {
+            align-items: center;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .right {
+            float: right;
+            width: 50%;
+            display: flex;    
+            align-items: center;
+            justify-content: center;
+            background-image: url('static/imagen 1.jpeg');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-container {
+            display: flex;
+            justify-content: center; /* Alinea el marco y el formulario lado a lado */
+            align-items: center; /* Alinea verticalmente ambos elementos */
+            margin: 20px; /* Espacio desde la parte superior */
+
+        }
+
+        .form-container input {
+            margin-bottom: 3px;
+         
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+            margin-left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */  
+            margin: 5px;
+             
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class = "contenedor">
+        <div class = "left">
+            <div class = "encabezado-left">
+                <h1>Sistema de Cinta Transportadora</h1>
+            </div>
+            <div class="cuerpo-left">
+                <div class="form-container">
+                    <form action="{{ url_for('funcion_inicio') }}" method = "POST">
+                        <label for="numero_de_alimento"> Cantidad de alimentos a transportar:</label>
+                        <input type="number" id="numero_de_alimento" name="numero_de_alimento" min="1" required>
+                        <div class="button-container">
+                            <button type="submit">Iniciar Carga</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class = "right"></div>
+    </div>
+
+</body>
+</html>
