@@ -1,0 +1,146 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+</head>
+<body>
+    <div class="row justify-content-md-center">
+        <div class="col-auto">
+            {% if vacio: %}
+                <h3 class="mx-auto">No hay reclamos de Soporte Informático en el sistema</h3>
+            {% else: %}
+                <h3 class="mx-auto">{{user}} Los reclamos de Soporte Informático presentes en el sistema son:</h3>
+                {% for reclamo in lista_reclamos: %}
+                    {% if reclamo not in reclamos_seguidos: %}
+                        <span><b>{{reclamo.id}}- </b> {{reclamo.contenido}}</span>
+                        <a href="{{ url_for('reclamo_soporte_informatico', username=user, adherirse=true, id=reclamo.id) }}">Adherirse</a><br>
+                        Creado en: {{reclamo.fecha_hora}}<br>
+                        Estado: {{reclamo.estado}}<br>
+                        Departamento: {{reclamo.departamento}}<br>
+                        Número de adherentes: {{adherentes[reclamo.id]}}<br><br>
+                    {% else: %}
+                        <span><b>{{reclamo.id}}- </b> {{reclamo.contenido}}</span><br>
+                        Creado en: {{reclamo.fecha_hora}}<br>
+                        Estado: {{reclamo.estado}}<br>
+                        Departamento: {{reclamo.departamento}}<br>
+                        Número de adherentes: {{adherentes[reclamo.id]}}<br><br>
+                    {% endif %}
+                {% endfor %}
+                <br>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto pt-1" style="color: rgb(17, 35, 112)">  
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %} 
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <form class="col-3 pt-3" action="{{url_for('reclamo_maestranza')}}">
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Reclamos de Maestranza</button>
+        </form>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+        <form class="col-3 pt-3" action="{{url_for('reclamo_secretaria_tecnica')}}">
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Reclamos de Secretaría Técnica</button>
+        </form>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+        <form class="col-3 pt-3" action="{{url_for('listar')}}">
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Listar Reclamos</button>
+        </form>
+    </div>
+    <br><br>
+    <div class="row justify-content-md-center">
+        <form class="col-3 pt-3" action="{{url_for('inicio')}}">
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        {% if vacio %}
+            <div class="alert alert-info text-center">
+                No hay reclamos de Soporte Informático en el sistema
+            </div>
+        {% else %}
+            <h3 class="text-center mb-4">{{ user }} - Reclamos de Soporte Informático</h3>
+            <div class="list-group">
+                {% for reclamo in lista_reclamos %}
+                    <div class="list-group-item mb-3">
+                        <h5><strong>{{ reclamo.id }} - {{ reclamo.contenido }}</strong></h5>
+                        <p class="mb-1">Creado en: {{ reclamo.fecha_hora }}</p>
+                        <p class="mb-1">Estado: {{ reclamo.estado }}</p>
+                        <p class="mb-1">Departamento: {{ reclamo.departamento }}</p>
+                        <p class="mb-2">Número de adherentes: {{ adherentes[reclamo.id] }}</p>
+
+                        {% if reclamo not in reclamos_seguidos %}
+                            <a href="{{ url_for('reclamo_soporte_informatico', username=user, adherirse=true, id=reclamo.id) }}"
+                               class="btn btn-sm btn-outline-primary">
+                                Adherirse
+                            </a>
+                        {% else %}
+                            <span class="badge bg-success">Ya estás adherido</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-warning mt-4">
+                    {% for message in messages %}
+                        {{ message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="row mt-5 g-3 justify-content-center">
+            <div class="col-md-4">
+                <form action="{{ url_for('reclamo_maestranza') }}">
+                    <button class="btn btn-primary w-100" type="submit">Reclamos de Maestranza</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form action="{{ url_for('reclamo_secretaria_tecnica') }}">
+                    <button class="btn btn-primary w-100" type="submit">Reclamos de Secretaría Técnica</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form action="{{ url_for('listar') }}">
+                    <button class="btn btn-primary w-100" type="submit">Listar Reclamos</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form action="{{ url_for('inicio') }}">
+                    <button class="btn btn-secondary w-100" type="submit">Volver al Inicio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

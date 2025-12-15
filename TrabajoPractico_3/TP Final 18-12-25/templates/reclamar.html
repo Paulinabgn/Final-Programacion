@@ -1,0 +1,176 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+</head>
+<body>
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto pt-1" style="color: rgb(17, 35, 112)">  
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %} 
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-auto">
+            {% if vacio: %}
+                <h3 class="mx-auto">Reclamo creado con éxito</h3>
+                <form class="col-3 pt-3" action="{{url_for('inicio')}}">        
+                    <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+                </form>
+            </div>
+            {% else: %}
+                <h3 class="mx-auto">Se encontraron los siguientes reclamos similares:</h3>
+                {% for reclamo in reclamos_similares: %}
+                    <li class="mt-1 mb-1 lead col-12 pt-3">
+                        {{reclamo.contenido}}
+                        <a href="{{ url_for('listar', adherirse=true, id=reclamo.id) }}">Adherirse</a>
+                    </li>
+                {% endfor %}
+                <br>
+                <form class="col-3 pt-3" action="{{url_for('inicio')}}">        
+                    <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+                </form>
+                <h3 class="mx-auto">Crear el reclamo de todas formas:</h3>
+                <form class="col-3 pt-3" method="POST" action="{{ url_for('confirmar_reclamo') }}">
+                    <button class="element_width w-100 btn btn-lg btn-success" type="submit">Crear Reclamo</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        h3 {
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            color: #112370;
+            margin-bottom: 15px;
+        }
+
+        li {
+            list-style: none;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        a {
+            color: #00796b;
+            margin-left: 10px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            background-color: #00796b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #004d40;
+        }
+
+        .btn-success {
+            background-color: #388e3c;
+        }
+
+        .btn-success:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+
+        <div class="message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %} 
+        </div>
+
+        {% if vacio: %}
+            <h3>Reclamo creado con éxito</h3>
+            <form action="{{url_for('inicio')}}">        
+                <button class="btn" type="submit">Volver</button>
+            </form>
+        {% else: %}
+            <h3>Se encontraron los siguientes reclamos similares:</h3>
+            <ul>
+            {% for reclamo in reclamos_similares: %}
+                <li>
+                    {{ reclamo.contenido }}
+                    <a href="{{ url_for('listar', adherirse=true, id=reclamo.id) }}">Adherirse</a>
+                </li>
+            {% endfor %}
+            </ul>
+            <form action="{{url_for('inicio')}}">        
+                <button class="btn" type="submit">Volver</button>
+            </form>
+
+            <h3>Crear el reclamo de todas formas:</h3>
+            <form method="POST" action="{{ url_for('confirmar_reclamo') }}">
+                <button class="btn btn-success" type="submit">Crear Reclamo</button>
+            </form>
+        {% endif %}
+        
+    </div>
+</body>
+</html>

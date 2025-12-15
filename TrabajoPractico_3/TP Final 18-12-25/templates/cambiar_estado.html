@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+</head>
+<body>
+    <div class="mx-auto">
+        <h3>Ingrese el nuevo estado del reclamo:</h3>
+    </div> 
+    <form action="{{url_for('funcion_cambiar_estado')}}" method="post">
+    
+        <label for="estado">Estado:</label><br>
+        <select id="estado" name="input_estado" required>
+            <option value="">Seleccione un estado</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="en_proceso">En Proceso</option>
+            <option value="resuelto">Resuelto</option>
+            <option value="cerrado">Inválido</option>
+        </select><br>
+
+        <label for="tiempo_de_resolucion">Tiempo de resolución (en días):</label><br>
+        <input type="number" id="tiempo_de_resolucion" name="input_tiempo_de_resolucion" value="" min="1" max="15" required><br><br>
+
+        <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Listo</button>
+    </form>
+        
+    <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+        <form class="col-3 pt-3" action="{{url_for('inicio')}}">        
+    </form>
+    
+</body>
+</html>

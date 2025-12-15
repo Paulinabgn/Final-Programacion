@@ -1,0 +1,14 @@
+[run]
+source = modules
+
+[report]
+omit = 
+    */tests/*
+    */__init__.py
+    classifier.py
+    config.py
+    Formularios.py
+    create_csv.py
+    text_vectorizer.py
+    gestor_login.py
+    factoria.py

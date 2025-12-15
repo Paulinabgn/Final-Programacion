@@ -1,0 +1,189 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1 class="mx-auto">Sistema de Reclamos</h1>
+        <h2>¡Bienvenido!</h2>
+        <h3>Usuario: {{user}}</h3>
+
+        {% if logged_in: %}
+            {% if rol == 'usuario_final': %}
+                <form method="POST" action="{{url_for('agregar_reclamo')}}">
+                    <input type="submit" value="Crear Reclamo">
+                </form>
+                <br>
+                <form method="POST" action="{{url_for('listar')}}">
+                    <input type="submit" value="Listar reclamos">
+                </form>
+                <br>
+                <form method="POST" action="{{url_for('mis_reclamos')}}">
+                    <input type="submit" value="Mis reclamos">
+                </form>
+                <br><br>
+                <form method="POST" action="{{url_for('logout')}}">
+                    <input type="submit" value="Salir">
+                </form>
+            {% elif rol == 'jefe_de_departamento' or rol == 'secretario_tecnico': %}
+                <form method="POST" action="{{url_for('analitica')}}">
+                    <input type="submit" value="Analítica">
+                </form>
+                <br>
+                <form method="POST" action="{{url_for('manejar_reclamos')}}">
+                    <input type="submit" value="Manejar Reclamos">
+                </form>
+                <br>
+                <div>
+                    <h4>Generar reporte de reclamos</h4>
+                    <p>Seleccioná el formato del reporte para tu departamento:</p>
+                    <a href="{{ url_for('generar_reporte', formato='html') }}">
+                        <button type="button">Descargar HTML</button>
+                    </a>
+                    <a href="{{ url_for('generar_reporte', formato='pdf') }}">
+                        <button type="button">Descargar PDF</button>
+                    </a>
+                </div>
+                <br>
+                <form method="POST" action="{{url_for('ayuda')}}">
+                    <input type="submit" value="Ayuda">
+                </form>
+                <br><br>
+                <form method="POST" action="{{url_for('logout')}}">
+                    <input type="submit" value="Salir">
+                </form>
+            {% endif %}
+        {% else %}
+            <form class="col-6" action="{{url_for('register')}}">        
+                <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Register</button>
+            </form>
+            <br>
+            <form class="col-6" action="{{url_for('login')}}">        
+                <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1, h2, h3, h4, p {
+            margin-bottom: 20px;
+            color: #004d40;
+        }
+
+        form {
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"], button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #004d40;
+        }
+
+        a button {
+            margin: 5px;
+        }
+
+        .btn-link {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Sistema de Reclamos</h1>
+        <h2>¡Bienvenido!</h2>
+        <h3>Usuario: {{user}}</h3>
+
+        {% if logged_in: %}
+            {% if rol == 'usuario_final': %}
+                <form method="POST" action="{{url_for('agregar_reclamo')}}">
+                    <input type="submit" value="Crear Reclamo">
+                </form>
+                <form method="POST" action="{{url_for('listar')}}">
+                    <input type="submit" value="Listar reclamos">
+                </form>
+                <form method="POST" action="{{url_for('mis_reclamos')}}">
+                    <input type="submit" value="Mis reclamos">
+                </form>
+                <form method="POST" action="{{url_for('logout')}}">
+                    <input type="submit" value="Salir">
+                </form>
+            {% elif rol == 'jefe_de_departamento' or rol == 'secretario_tecnico': %}
+                <form method="POST" action="{{url_for('analitica')}}">
+                    <input type="submit" value="Analítica">
+                </form>
+                <form method="POST" action="{{url_for('manejar_reclamos')}}">
+                    <input type="submit" value="Manejar Reclamos">
+                </form>
+                <div>
+                    <h4>Generar reporte de reclamos</h4>
+                    <p>Seleccioná el formato del reporte para tu departamento:</p>
+                    <a class="btn-link" href="{{ url_for('generar_reporte', formato='html') }}">
+                        <button type="button">Generar HTML</button>
+                    </a>
+                    <a class="btn-link" href="{{ url_for('generar_reporte', formato='pdf') }}">
+                        <button type="button">Generar PDF</button>
+                    </a>
+                </div>
+                <form method="POST" action="{{url_for('ayuda')}}">
+                    <input type="submit" value="Ayuda">
+                </form>
+                <form method="POST" action="{{url_for('logout')}}">
+                    <input type="submit" value="Salir">
+                </form>
+            {% endif %}
+        {% else %}
+            <form action="{{url_for('register')}}">        
+                <button type="submit">Register</button>
+            </form>
+            <form action="{{url_for('login')}}">        
+                <button type="submit">Login</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

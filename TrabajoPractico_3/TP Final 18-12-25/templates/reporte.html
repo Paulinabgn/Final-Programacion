@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Reclamos - {{ departamento }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h2, h3, h4 {
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        p, li {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "• ";
+            color: #00796b;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reporte de Reclamos - {{ departamento }}</h2>
+        <p>Total de reclamos: {{ numero_de_reclamos }}</p>
+        <ul>
+            <li>Pendientes: {{ porcentajes['pendiente'] }}%</li>
+            <li>En proceso: {{ porcentajes['en proceso'] }}%</li>
+            <li>Resueltos: {{ porcentajes['resuelto'] }}%</li>
+        </ul>
+        <h3>Mediana de tiempo de resolución</h3>
+        <ul>
+            <li>En proceso: {{ mediana_en_proceso }}</li>
+            <li>Resueltos: {{ mediana_resuelto }}</li>
+        </ul>
+        <h3>Gráficos</h3>
+        <img src="/static/{{ ruta_circular }}" alt="Diagrama circular de estados" style="max-width: 500px;">
+        <img src="/static/{{ ruta_nube }}" alt="Nube de palabras" style="max-width: 800px;">
+        <h3>Listado de Reclamos</h3>
+        <ul>
+            {% for r in reclamos %}
+                <li>ID: {{ r['id'] }} | Estado: {{ r['estado'] }} | {{ r['contenido'] }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('descargar_reporte_html') }}" download>
+            <button>Descargar reporte HTML</button>
+        </a>
+        <a href="{{ url_for('inicio') }}">
+            <button style="margin-top: 12px;">Volver al menú</button>
+        </a>
+    </div>
+</body>
+</html>
+

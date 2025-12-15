@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reclamos</title>
+</head>
+<body>
+    {% extends 'bootstrap/base.html' %}
+	{% import "bootstrap/wtf.html" as wtf %}
+
+	{% block content %}
+
+		<div class="container mx-auto">
+			<h3>¿A qué departamento pertenece el reclamo?:</h3>   
+			<div style="color: rgb(17, 35, 112)">  
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							{{ message }}
+						{% endfor %}
+					{% endif %}
+				{% endwith %} 
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-6">
+					<form action="{{ url_for('derivar') }}" method="post">                    
+						{{ wtf.form_field(e_form.id, value=reclamo.id)}}
+						{{ wtf.form_field(e_form.departamento, value=reclamo.departamento)}}
+						{{ wtf.form_field(e_form.submit, value = "Derivar") }}
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sin Reclamos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 95%;
+            max-width: 800px;
+        }
+        h2, h3 {
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+        ul {
+            text-align: left;
+            margin: 0 auto 20px auto;
+            display: inline-block;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+        }
+        .volver {
+            margin-top: 30px;
+        }
+        .volver a, .volver button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .volver a:hover, .volver button:hover {
+            background-color: #004d40;
+        }
+        .listado-reclamos {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>No hay reclamos registrados para el departamento {{ departamento }}.</h2>
+        <div class="volver">
+            <a href="{{ url_for('inicio') }}">Volver</a>
+        </div>
+    </div>
+</body>
+</html>

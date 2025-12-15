@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Reclamos - {{ departamento | title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Reclamos - {{ departamento | title }}</h2>
+
+    {% if vacio %}
+        <div class="alert alert-info mt-3">
+            No hay reclamos registrados para este departamento.
+        </div>
+    {% else %}
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Contenido</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                    <th>Adherentes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reclamo in lista_reclamos %}
+                <tr>
+                    <td>{{ reclamo.id }}</td>
+                    <td>{{ reclamo.contenido }}</td>
+                    <td>{{ reclamo.estado }}</td>
+                    <td>{{ reclamo.fecha }}</td>
+                    <td>
+                        {% if reclamo.id not in reclamos_seguidos %}
+                            <a href="{{ url_for('reclamo_departamento', departamento=departamento, adherirse='True', id=reclamo.id) }}" class="btn btn-sm btn-primary">Adherirse</a>
+                        {% else %}
+                            <span class="badge bg-success">Adherido</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ adherentes[reclamo.id] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

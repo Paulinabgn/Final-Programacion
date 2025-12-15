@@ -1,0 +1,3 @@
+Diana,Vertiz,dianavertiz@gmail.com,Dvertiz,Docente,diana,jefe_de_departamento, soporte informático
+Javier,Diaz,javirdiaz@gmail.com,JavierD,Docente,javier,secretario_tecnico,secretaría técnica
+Juan Pablo,Municion,juanpa@gmail.com,JPmun,PAyS,juanpablo,secretario_tecnico,maestranza

@@ -1,0 +1,148 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analítica de Reclamos</title>
+</head>
+<body>
+    <h2>Estadísticas de Reclamos</h2>
+    <p>Total de reclamos: {{ num_reclamos }}</p>
+    <ul>
+        <li>Pendientes: {{ porcentajes['pendiente'] }}%</li>
+        <li>En proceso: {{ porcentajes['en proceso'] }}%</li>
+        <li>Resueltos: {{ porcentajes['resuelto'] }}%</li>
+    </ul>
+    <h3>Mediana de tiempo de resolución</h3>
+    <ul>
+        <li>En proceso: {{ mediana_en_proceso }}</li>
+        <li>Resueltos: {{ mediana_resuelto }}</li>
+    </ul>
+    <h3>Gráficos</h3>
+    <div>
+        <h4>Diagrama circular de estados</h4>
+        <img src="{{ url_for('static', filename=ruta_circular) }}" alt="Diagrama circular de estados" style="max-width: 500px;">
+    </div>
+    <div>
+        <h4>Nube de palabras clave</h4>
+        <img src="{{ url_for('static', filename=ruta_nube) }}" alt="Nube de palabras" style="max-width: 800px;">
+    </div>
+    <div class="row justify-content-md-center">
+        <form class="col-3 pt-3" action="{{url_for('inicio')}}">        
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analítica de Reclamos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h2, h3, h4 {
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        p, li {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "• ";
+            color: #00796b;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Estadísticas de Reclamos</h2>
+        <p><strong>Total de reclamos:</strong> {{ num_reclamos }}</p>
+
+        <ul>
+            <li>Pendientes: {{ porcentajes['pendiente'] }}%</li>
+            <li>En proceso: {{ porcentajes['en proceso'] }}%</li>
+            <li>Resueltos: {{ porcentajes['resuelto'] }}%</li>
+        </ul>
+
+        <h3>Mediana de reclamos</h3>
+        <ul>
+            <li>En proceso: {{ mediana_en_proceso }}</li>
+            <li>Resueltos: {{ mediana_resuelto }}</li>
+        </ul>
+
+        <h3>Gráficos</h3>
+        <div>
+            <h4>Diagrama circular de estados</h4>
+            <img src="{{ url_for('static', filename=ruta_circular) }}" alt="Diagrama circular de estados">
+        </div>
+
+        <div>
+            <h4>Nube de palabras clave</h4>
+            <img src="{{ url_for('static', filename=ruta_nube) }}" alt="Nube de palabras">
+        </div>
+
+        <form action="{{url_for('inicio')}}">        
+            <button type="submit">Volver</button>
+        </form>
+    </div>
+</body>
+</html>

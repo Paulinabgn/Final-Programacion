@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Reclamos</title>
+</head>
+<body>
+    <h2>Todos los reclamos</h2>
+    {% if vacio %}
+        <p>No hay reclamos registrados.</p>
+    {% else %}
+        <ul>
+        {% for reclamo in lista_reclamos %}
+            <li>
+                <b>{{ reclamo.contenido }}</b> - {{ reclamo.departamento }} - Estado: {{ reclamo.estado }}
+                <br>
+                Adherentes: {{ adherentes[reclamo['id']] }}
+                {% if reclamo['id'] not in reclamos_seguidos %}
+                    <a href="{{ url_for('listar', adherirse=True, id=reclamo['id']) }}">Adherirse</a>
+                {% else %}
+                    <span>Ya sigues este reclamo</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{{ url_for('inicio') }}">Volver al inicio</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Reclamos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h2 class="mb-4 text-primary text-center">Todos los Reclamos</h2>
+                <div class="text-center mb-4">
+                    <a href="{{ url_for('reclamo_soporte_informatico') }}" class="btn btn-outline-secondary mx-1">Soporte Informático</a>
+                    <a href="{{ url_for('reclamo_maestranza') }}" class="btn btn-outline-secondary mx-1">Maestranza</a>
+                    <a href="{{ url_for('reclamo_secretaria_tecnica') }}" class="btn btn-outline-secondary mx-1">Secretaría Técnica</a>
+                </div>
+                {% if vacio %}
+                    <p class="text-center">No hay reclamos registrados.</p>
+                {% else %}
+                    <ul class="list-group">
+                        {% for reclamo in lista_reclamos %}
+                            <li class="list-group-item mb-2">
+                                <div class="fw-bold">{{ reclamo.contenido }}</div>
+                                <div>{{ reclamo.departamento }} - <strong>Estado:</strong> {{ reclamo.estado }}</div>
+                                <div>Adherentes: {{ adherentes[reclamo['id']] }}</div>
+                                {% if reclamo['id'] not in reclamos_seguidos and reclamo['id_usuario'] != user_id %}
+                                    <a class="btn btn-sm btn-outline-primary mt-2" href="{{ url_for('listar', adherirse=True, id=reclamo['id']) }}">Adherirse</a>
+                                {% elif reclamo['id'] in reclamos_seguidos %}
+                                    <span class="text-success mt-2 d-block">Ya sigues este reclamo</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

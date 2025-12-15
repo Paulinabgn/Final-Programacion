@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1, h2, h3, h4, p {
+            margin-bottom: 20px;
+            color: #004d40;
+        }
+
+        form {
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"], button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #004d40;
+        }
+
+        a button {
+            margin: 5px;
+        }
+
+        .btn-link {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h3>¡Bienvenido al portal de reclamos!</h3>
+        <p>
+            Como jefe o secretario técnico, tiene a su disposición las siguientes herramientas<br>
+            para administrar los reclamos de manera eficiente:
+        </p>
+        <p>
+            <strong>ANALÍTICA:</strong><br>
+            En esta sección, podrá consultar estadísticas como el total de reclamos mediante gráficos circulares.<br>
+            También se mostrarán métricas sobre los tiempos de resolución, incluyendo la mediana de los reclamos en proceso y finalizados.<br>
+            Además, podrá visualizar un análisis de palabras clave presentes en los reclamos recibidos.
+        </p>
+        <p>
+            <strong>MANEJAR RECLAMOS:</strong><br>
+            Aquí tendrá acceso a una lista de los reclamos asociados a su departamento, con detalles como: ID del reclamo, ID del usuario creador, IDs de usuarios adheridos, fecha y hora, estado actual, y opciones para modificar dicho estado (pendiente, en proceso, resuelto, o inválido).<br>
+            Si usted es jefe de departamento, deberá asignar un plazo de resolución entre 1 y 15 días al iniciar la gestión de un reclamo.
+        </p>
+        
+        <form class="col-3 pt-3" action="{{url_for('inicio')}}">        
+            <button class="element_width w-100 btn btn-lg btn-primary" type="submit">Volver</button>
+        </form>
+    </div>
+</body>
+</html>
