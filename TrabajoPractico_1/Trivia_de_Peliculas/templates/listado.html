@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Películas</title>
+    <style>
+
+        body{
+            background-color: brown;
+        }
+
+        /* Estilos para los botones */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+            margin-left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+        }
+    
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <h1>Listado de Películas</h1>
+    <ol>
+        {% for pelicula in peliculas %}
+            <li>{{ pelicula }}</li>
+        {% endfor %}
+    </ol>
+<div class="button-container" id="button-container">
+
+    <!-- Agregar un formulario para volver a la página de inicio -->
+    <form action="{{ url_for('funcion_inicio') }}" method="GET">
+        <button type="submit">Volver al Inicio</button>
+    </form>
+</div>
+</body>
+</html>

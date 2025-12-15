@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial</title>
+    <style>
+        body {
+            background-color: brown;
+        }
+
+        .centro{    
+            place-items: center;
+        }
+
+        /* Estilos para los botones */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+            margin-left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+            margin-bottom: 20px; /* Espacio adicional en la parte inferior */
+        }
+        .button-container form {
+            margin-bottom: 10px; /* Espacio entre los botones */
+        }
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 50px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */
+        }
+
+        /* Estilos para la lista de resultados */
+        .resultados-list {
+            margin-bottom: 10px; /* Margen inferior para dejar espacio para los botones */
+        }
+    </style>
+</head>
+<body>
+    <div class = "centro">
+        <h1>Listado de resultados de todos los jugadores</h1>
+        <h2><strong>Usuario-Aciertos/Cantidad de Frases-Fecha-Hora</strong></h2>
+        <ul class="resultados-list">
+            {% for registro in resultados %}
+                <li>{{ registro.0}} {{ registro.1}}/{{ registro.2}}    {{ registro.3}}</li> 
+            {% endfor %}
+        </ul>
+    
+        <!-- Contenedor de botones -->
+        <div class="button-container" id="button-container">
+
+            <form action="{{ url_for('funcion_resultados') }}" method="POST">
+                <button type="submit">Volver a Resultados</button>
+            </form>
+        
+            <form action="{{ url_for('funcion_inicio') }}" method="GET">
+                <button type="submit">Volver al Inicio</button>
+            </form>
+        
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntaje Final Individual</title>
+    <style>
+        body{
+            background-image: url('static/fondo trivia.jfif');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .centro {
+            width: 700px;  /* Ancho del contenedor */
+            height: 500px;  /* Alto del contenedor */
+        }
+
+        .encabezado {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30%;
+        }
+
+        .cuerpo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40%;
+        }
+
+        .pie {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30%;
+        }
+
+        /* Estilos para los botones */
+        .button-container {
+            display: flex;
+        }
+    
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */
+        }
+
+    </style>
+</head>
+<body>
+    <div class = "centro">
+        <div class = "encabezado">
+            <h1>Puntaje Final Individual</h1>
+        </div>
+        <div class = "cuerpo">
+            <h1>{{ usuario }}, su puntaje final es {{ contador_aciertos }}/{{ cantidad_frases }}.
+                ({{ "%0.2f"|format(contador_aciertos/cantidad_frases*100) }}%)
+            </h1>
+        </div>
+        <div class = "pie">
+            <div class="button-container" id="button-container">
+                <form action="{{ url_for('funcion_inicio') }}" method="GET">
+                    <button type="submit">Volver al Inicio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

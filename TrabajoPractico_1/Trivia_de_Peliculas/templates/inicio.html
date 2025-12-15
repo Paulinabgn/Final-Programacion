@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia de películas</title>
+    <style>
+        /* Estilos para los botones */
+        *{
+            margin: 0;
+            padding: 0 ;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center; /* Alinea el marco y el formulario lado a lado */
+            align-items: center; /* Alinea verticalmente ambos elementos */
+            margin: 20px; /* Espacio desde la parte superior */
+
+        }
+
+        .form-container input {
+            margin-bottom: 3px;
+         
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+            margin-left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */  
+            margin: 5px;
+             
+        }
+
+        .titulo{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            height: 80px;
+            
+        }
+
+        .subtitulo1 {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            height: 20px;  
+        }
+
+        .subtitulo2 {
+            margin-left: 450px; /* Ajusta la distancia desde el margen izquierdo */
+            font-size: 20px;
+            height: 20px;   
+        }
+        .marco {
+        border: 2px solid #000;
+        padding: 30px;
+        width: 300px;
+        height: 300px;
+        float: right; /* Hace que el marco se alinee al lado derecho */
+        margin-right: 50px; /* Añade un espacio desde el borde derecho */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px; /* Añade espacio entre la parte superior de la página y el marco */
+        }
+
+        body {
+            background-image: url('static/fondo inicio.jpeg');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh; 
+        }
+
+        .texto-debajo {
+        clear: both; /* Asegura que este texto se coloque debajo del marco flotante */
+        text-align: center; /* Centra el texto horizontalmente */
+        margin-top: 30px; /* Añade espacio entre el marco y el texto debajo */
+        }
+
+        .texto-al-lado {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        flex-direction: column;
+        float: left; /* El texto se alinea al lado izquierdo del marco */
+        width: 60%; /* Deja espacio para el marco (ancho del marco + margen) */
+        margin: 0;
+        margin-top: 50px; /* Espacio desde la parte superior */
+        height: 364px;
+        
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <h1 class = "titulo">Trivia de películas</h1>
+
+    <h2 class = "subtitulo1">¡Bienvenido a Trivia de Películas, el juego donde pondrás a prueba tu conocimiento cinematográfico!</h2>
+    
+    <h3 class = "marco">Cómo Jugar:
+        Al iniciar, elige cuántos intentos o partidas deseas jugar. Este será el número total de preguntas que enfrentarás.
+        Cada ronda comenzará con una frase relacionada con una película, se te presentarán tres opciones de películas. Solo una de ellas es la correcta.
+        Elige la película que creas que corresponde con la frase mostrada.
+        Después de cada respuesta, el juego continuará con el siguiente intento hasta que hayas completado la cantidad de partidas que elegiste.</h3>
+
+    <div class="texto-al-lado">
+        <div class = "form-container">
+        <form action="{{ url_for('funcion_inicio') }}" method="POST">
+            <label for = "numero_de_frases">Número de frases:</label>    
+            <input type = "number" id = "numero_de_frases" name = "numero_de_frases" min = "3" max = "15" required><br>
+            
+            <label for="nombre de usuario ">Nombre de usuario:</label>
+            <input type="text" id="nombre de usuario" name="nombre_de_usuario" required/><br>
+        </div>
+        <div class="button-container">
+        <button type="submit"> Iniciar Trivia </button>
+        </form>
+    
+        <form action="{{url_for('funcion_listado')}}" method="POST">  
+        <button type="submit"> Listado </button>
+        </form>   
+    
+        <form action="{{url_for('funcion_resultados')}}" method="POST">   
+        <button type="submit"> Resultados </button>
+        </form>
+        </div>
+    </div>
+
+    <h2 class = "texto-debajo">¡Exitos!</h2>
+  
+</body>
+</html>

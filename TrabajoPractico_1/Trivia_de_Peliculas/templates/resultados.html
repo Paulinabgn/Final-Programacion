@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <style>
+
+        body{
+            background-image: url('static/fondo resultados.jfif');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+        }
+        
+        .centro{
+            float: left;
+            display: grid;    
+            place-items: center;
+            width: 50%;  /* Ancho del contenedor */
+            height: 70%;  /* Alto del contenedor */
+        }
+
+        /* Estilos para los botones */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+            margin-left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+            margin-bottom: 20px; /* Espacio adicional en la parte inferior */
+        }
+        .button-container form {
+            margin-bottom: 10px; /* Espacio entre los botones */
+        }
+        .button-container button {
+            width: 150px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */
+        }
+
+        /* Estilos para la lista de resultados */
+        .resultados-list {
+            margin-bottom: 10px; /* Margen inferior para dejar espacio para los botones */
+        }
+    </style>
+</head>
+<body>
+    <div class = "centro">
+        <h1>RESULTADOS</h1>
+        <div class="button-container" id="button-container">
+
+            <form action="{{ url_for('funcion_historial') }}" method="POST">
+                <button type="submit">Historial</button>
+            </form>
+            
+            <form action="{{ url_for('funcion_grafico_lineal') }}" method="GET">
+                <button type="submit">Gráfica lineal</button>
+            </form>
+            
+            <form action="{{ url_for('funcion_grafico_torta') }}" method="GET">
+                <button type="submit">Gráfica de torta</button>
+            </form>
+            
+            <form action="{{ url_for('funcion_inicio') }}" method="GET">
+                <button type="submit">Volver al Inicio</button>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

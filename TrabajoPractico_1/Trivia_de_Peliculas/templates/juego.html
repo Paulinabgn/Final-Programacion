@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia de películas</title>
+    <style>
+
+        body{
+            background-image: url('static/fondo trivia.jfif');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .centro{
+            width: 700px;  /* Ancho del contenedor */
+            height: 500px;  /* Alto del contenedor */
+        }
+
+        .encabezado{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 20%;
+        }
+
+        .top-left {
+            float: left;
+            justify-content: center;
+            height: 100%;
+            width: 50%;
+            display: grid;    
+            place-items: center;
+        }
+
+        .top-right {
+            float: right;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50%;
+            display: grid; 
+            place-items: center;
+        }
+        
+        .cuerpo {
+            align-items: center;
+            height: 80%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bottom-left {
+            float: left;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50%; 
+            display: grid;    
+            place-items: center;
+        }
+
+        .bottom-right {
+            float: right;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50%;
+            display: grid;    
+            place-items: center;
+        }
+
+        .marco{
+            border: 2px solid #000;
+            align-items: center;
+            justify-content: center;
+            margin: 0px 10px;
+        }
+
+        .button-container { /*VER*/
+            display: grid;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            grid-template-columns: 1fr; /* Una columna */
+            grid-template-rows: repeat (3, auto); /* Tres filas con altura automática */
+            width: 200px; /* Ancho de los botones */
+            box-sizing: border-box;
+            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            padding: 10px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class = "centro">
+        <div class = "encabezado">
+            <div class = "top-left">
+                <h1>Tu frase es...</h1>
+            </div>
+            <div class = "top-right">
+                <h1>Las opciones son...</h1>
+            </div>
+        </div>
+        <div class = "cuerpo">
+            <div class = "bottom-left">
+                <div class = "marco"> 
+                    <h2>{{frase}}</h2>
+                </div>
+            </div>
+            <div class = "bottom-right">
+                <div class = "button-container">
+                    <form action="{{ url_for('funcion_juego') }}" method="POST">
+                        {% for opcion in opciones %}
+                            <button type="submit" id="respuesta" name="respuesta" value="{{ opcion }}">{{ opcion }}</button>
+                        {% endfor %}
+                    </form>        
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

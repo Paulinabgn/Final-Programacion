@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Individual</title>
+    <style>
+        /* Estilo para el mensaje de respuesta */
+        .correcto-fondo {
+            background-image: url('static/correcto.jpg');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            font-size: 50px; /* Tamaño de fuente para ambos mensajes */
+            text-align: center; /* Centrar el texto */
+        }
+        
+        .incorrecto-fondo {
+            background-image: url('static/incorrecto.jpg');
+            background-size: cover;   /* Escala la imagen para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            font-size: 50px; /* Tamaño de fuente para ambos mensajes */
+            text-align: center; /* Centrar el texto */
+        }
+
+        .correcto {
+            color: rgb(0, 0, 0); /* Color verde para la respuesta correcta */
+        }
+
+        .incorrecto {
+            color: rgb(0, 0, 0); /* Color rojo para la respuesta incorrecta */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: absolute; /* Posiciona el contenedor de forma absoluta */
+            left: 50%; /* Mueve el contenedor al centro horizontalmente */
+            transform: translateX(-50%); /* Ajusta el contenedor para centrarlo completamente */
+            bottom: 20px; /* Coloca el contenedor a 20px del borde inferior (ajusta según necesites) */
+            
+        }
+
+        .button-container button {
+            font-size: 20px; /* Tamaño de fuente del botón */
+            display: block; /* Mostrar el botón como bloque para centrarlo */
+            margin: 20px auto; /* Margen superior e inferior automático y margen izquierdo y derecho automático para centrarlo */
+            width: 120px; /* Ancho de los botones */
+            height: 30px; /* Altura de los botones */
+        }
+    </style>
+</head>
+<body>
+    {% if respuesta_correcta %}
+        <div class = "correcto-fondo">
+            <p class="correcto">¡Felicitaciones! La respuesta es correcta.</p>
+            <div class = "button-container">
+                <form action="{{ url_for('funcion_juego') }}" method="GET">
+                    <button type="submit">Siguiente</button>
+                </form>
+            </div> 
+        </div>
+         
+    {% else %}
+        <p class="incorrecto-fondo">¡Incorrecto! La respuesta es: '{{ correcta }}'.</p>
+            <div class = "button-container">
+                <form action="{{ url_for('funcion_juego') }}" method="GET">
+                    <button type="submit">Siguiente</button>
+                </form>
+            </div> 
+    {%endif %}
+</body>
+</html>

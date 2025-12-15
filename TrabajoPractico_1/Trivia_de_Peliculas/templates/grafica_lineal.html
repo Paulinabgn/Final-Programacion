@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafica</title>
+    <style>
+
+        body {
+            background-color: brown;
+        }
+
+        .centro{    
+            place-items: center;
+        }
+
+        /* Estilo para botones */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente los botones */
+        }
+        .button-container form {
+            margin-bottom: 10px; /* Espacio entre los botones */
+        }
+        .button-container button {
+            width: 120px; /* Ancho de los botones */
+            height: 40px; /* Altura de los botones */
+            font-size: 14px; /* Tamaño de fuente de los botones */
+        }
+    </style>
+</head>
+<body>
+    <div class = "centro">
+        <h1>Grafico lineal</h1>
+        <div style="text-align: center;">
+            <img src="{{url_for('static', filename='Diagrama de lineas.png')}}" width="800" id="Diagrama de lineas">
+        </div>
+
+        <div class="button-container">
+            <form action="{{ url_for('funcion_resultados') }}" method="GET">
+                <button type="submit">Volver a Resultados</button>
+            </form>
+            <form action="{{ url_for('funcion_inicio') }}" method="GET">
+                <button type="submit">Volver al Inicio</button><br>
+            </form>
+            <a href="/static/Diagrama de lineas.pdf" download>
+                <button>Descargar Gráfico</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
